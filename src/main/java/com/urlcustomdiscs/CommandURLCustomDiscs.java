@@ -49,12 +49,16 @@ public class CommandURLCustomDiscs implements CommandExecutor {
         this.pluginUsageMode = plugin.getPluginUsageMode();
     }
 
+
+
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
         if (!(sender instanceof Player player)) {
             sender.sendMessage("Only players can use this command.");
             return false;
         }
+
+        if(!player.hasPermission("customdisc.admin")) return true;
 
         // Help command
         if (args.length == 1 && args[0].equalsIgnoreCase("help")) {
